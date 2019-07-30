@@ -1,0 +1,23 @@
+  #disp {
+    margin: 5px;
+    height: 30px;
+    background: #fff;
+    border-radius: 5px;
+  }
+  #display-style {
+    background-color: darkgrey;
+    width: min-content;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0 0 10px;
+  }
+  .btn {
+    margin: 3px 11px 11px 3px;
+    width: 30px;
+    height: 30px;
+  }
+  p {
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+  }

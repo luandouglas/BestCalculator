@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="code.js"></script>
+    <title>Calculadora</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      style="background-color: darkgrey; width: min-content; padding: 10px; border-radius: 10px; margin: 10px 0 0 10px;"
+    >
+      <div>
+        <div
+          style="margin: 5px; height: 30px; background: #FFF;border-radius: 5px;"
+        >
+          <div class="screen">
+            <h5 style="height: 30px;" id="display">0</h5>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <button
+            class="btn btn-primary col-md-6"
+            onclick="deleteChar()"
+            ondblclick="clearAll()"
+          >
+            <p>Clear</p>
+          </button>
+        </div>
+      </div>
+      <div class="Buttons" style="width: 200px;">
+        <button
+          onclick="addNumber(this)"
+          value="7"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>7</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="8"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>8</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="9"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>9</p>
+        </button>
+        <button
+          onclick="addOperador('/')"
+          value="/"
+          type="button"
+          class="btn btn-light"
+        >
+          <p>/</p>
+        </button>
+      </div>
+
+      <div class="Buttons">
+        <button
+          onclick="addNumber(this)"
+          value="4"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>4</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="5"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>5</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="6"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>6</p>
+        </button>
+        <button
+          onclick="addOperador('*')"
+          value="*"
+          type="button"
+          class="btn btn-light"
+        >
+          <p>*</p>
+        </button>
+      </div>
+
+      <div class="Buttons">
+        <button
+          onclick="addNumber(this)"
+          value="1"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>1</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="2"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>2</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="3"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>3</p>
+        </button>
+        <button
+          onclick="addOperador('-')"
+          value="-"
+          type="button"
+          class="btn btn-light"
+        >
+          <p>-</p>
+        </button>
+      </div>
+
+      <div class="Buttons">
+        <button
+          onclick="addNumber(this)"
+          value="0"
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>0</p>
+        </button>
+        <button
+          onclick="addNumber(this)"
+          value="."
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>,</p>
+        </button>
+        <button
+          onclick="result(this)"
+          value="="
+          type="button"
+          class="btn btn-primary"
+        >
+          <p>=</p>
+        </button>
+        <button
+          onclick="addOperador('+')"
+          value="+"
+          type="button"
+          class="btn btn-light"
+        >
+          <p>+</p>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
+<style>
+  .btn {
+    margin: 3px 11px 11px 3px;
+    width: 30px;
+    height: 30px;
+  }
+  p {
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+  }
+</style>
+<script>
+  function clearAll() {
+    let display = document.getElementById("display");
+    display.innerHTML = "";
+  }
+  function deleteChar() {
+    let display = document.getElementById("display");
+    let string = display.innerHTML;
+    display.innerHTML = string.substr(0, string.length - 1);
+    if (display.innerHTML.length < 1) display.innerHTML = 0;
+  }
+  function addNumber(aux) {
+    let display = document.getElementById("display");
+    if (display.innerHTML[0] == "0") display.innerHTML = "";
+    display.innerHTML = display.innerHTML + "" + aux.value;
+  }
+  function addOperador(operador) {
+    let operacao = document.getElementById("display");
+    if (operacao.innerHTML.indexOf("+") != -1) {
+      return;
+    }
+    if (operacao.innerHTML.indexOf("-") != -1) {
+      return;
+    }
+    if (operacao.innerHTML.indexOf("/") != -1) {
+      return;
+    }
+    if (operacao.innerHTML.indexOf("*") != -1) {
+      return;
+    }
+    if (operacao.innerHTML != 0)
+      display.innerHTML = display.innerHTML + "" + operador;
+  }
+  function calcular(operador) {
+    let result = document.getElementById("display");
+    let valor = result.innerHTML;
+    let [v1, v2] = valor.split(operador);
+    let resultado = 0;
+    switch (operador) {
+      case "+":
+        resultado = Number(v1) + Number(v2);
+        break;
+      case "-":
+        resultado = Number(v1) - Number(v2);
+        break;
+      case "/":
+        resultado = Number(v1) / Number(v2);
+        break;
+      case "*":
+        resultado = Number(v1) * Number(v2);
+        break;
+      default:
+        break;
+    }
+    result.innerHTML = resultado;
+  }
+
+  function result() {
+    let result = document.getElementById("display");
+    let str = result.innerHTML;
+    let search = 0;
+    search = str.indexOf("+");
+    if (search != -1) {
+      calcular("+");
+      return;
+    }
+    search = str.indexOf("-");
+    if (search != -1) {
+      calcular("-");
+      return;
+    }
+    search = str.indexOf("/");
+    if (search != -1) {
+      calcular("/");
+      return;
+    }
+    search = str.indexOf("*");
+    if (search != -1) {
+      calcular("*");
+      return;
+    }
+  }
+</script>
